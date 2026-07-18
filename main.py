@@ -55,7 +55,7 @@ def customBase64(encodedTxt, decode=1):
 
 def decode_jw_token(jw_token):
 	try:
-		payload = jwt.decode(jw_token, 'eae8beb812b03868ff7628cae7a73afadca8f5f94da28c0e')
+		payload = jwt.decode(jw_token, 'eae8beb812b03868ff7628cae7a73afadca8f5f94da28c0e', algorithms=['HS256'])
 		return payload['sub']
 	except jwt.ExpiredSignatureError:
 		return 0
