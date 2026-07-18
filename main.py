@@ -16,6 +16,7 @@ app = Flask(__name__, static_url_path='')
 cors = CORS(app)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+WEBAPP_DIR = os.path.join(BASE_DIR, "WebApp")
 
 devices_map = {}
 active_Networks = {}
@@ -440,7 +441,11 @@ def logout():
 
 @app.route('/')
 def index():
-	return "Wait for it ... and it is on!"
+	return send_from_directory(WEBAPP_DIR, "index.html")
+
+@app.route('/<path:filename>')
+def serve_webapp(filename):
+	return send_from_directory(WEBAPP_DIR, filename)
 
 
 
